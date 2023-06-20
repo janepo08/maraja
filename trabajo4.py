@@ -17,8 +17,15 @@ import pandas as pd
 ## leemos los datos
 datos = pd.read_excel('mapudungun.xlsx')
 
-## transformamos a dict of dicts
-D = datos.set_index('persona').to_dict(orient='index')
+
+u = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='consonante')
+D = u.set_index('persona').to_dict(orient='index')
+
+ui = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='vocal no i')
+Dui = ui.set_index('persona').to_dict(orient='index')
+
+uo = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='vocal i')
+Duo = uo.set_index('persona').to_dict(orient='index')
 
 ## con este diccionario, cree una función que reciba tres parámetros: base, número y persona
 ## y conjugue la base. 
@@ -29,7 +36,20 @@ numero = 'dual'
 
 def conjugacion(base,numero,persona):
     
-    conjugacion = base + D[persona][numero]
+    #conjugacion = base + D[persona][numero]
+    
+    if base[-1] not in "aeiou":
+        conjugacion = base + D[persona][numero]
+        
+    if base[-1] in "aeou":
+        conjugacion = base + Dui[persona][numero]
+    
+    if base[-1] in "i":
+        
+        if persona == 3 and numero == "singular":
+            conjugacion = base 
+        else:
+            conjugacion = base + Duo[persona][numero]
     
     return conjugacion
     
@@ -69,14 +89,14 @@ df = pd.DataFrame.from_dict(d).T
 ## Use pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='consonante') para leer cada hoja.
 ## Redefina la función anterior para cualquier verbo de los tres tipos de conjugación. 
 
-u = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='consonante')
-D = u.set_index('persona').to_dict(orient='index')
+#u = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='consonante')
+#D = u.set_index('persona').to_dict(orient='index')
 
-ui = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='vocal no i')
-Dui = ui.set_index('persona').to_dict(orient='index')
+#ui = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='vocal no i')
+#Dui = ui.set_index('persona').to_dict(orient='index')
 
-uo = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='vocal i')
-Duo = uo.set_index('persona').to_dict(orient='index')
+#uo = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='vocal i')
+#Duo = uo.set_index('persona').to_dict(orient='index')
 
 #############
 ## if-else ##
