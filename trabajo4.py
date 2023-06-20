@@ -14,9 +14,10 @@ import streamlit as st
 ## usamos la librería pandas y leemos el excel
 import pandas as pd
 
+from PIL import Image
+
 ## leemos los datos
 datos = pd.read_excel('mapudungun.xlsx')
-
 
 u = pd.read_excel(open('mapudungun.xlsx', 'rb'),sheet_name='consonante')
 D = u.set_index('persona').to_dict(orient='index')
@@ -105,8 +106,17 @@ df = pd.DataFrame.from_dict(d).T
 ## Reescriba la primera función, de la primera tabla, solo usando condiciones lógicas.
 
 ## los Excel son muchos diccionarios recopilados
+#Y = ":blue[¡Conjuguemos los verbos en mapudungun!] ✨"
 
-st.title("Conjuga verbos en Mapudungun")
+
+#st.markdown(Y)
+st.markdown("<p style='color: blue; font-size: 32px; font-weight: bold;'>¡Conjuguemos los verbos en mapudungun! ✨</p>", unsafe_allow_html=True)
+#st.markdown("<h1 style='text-align: center;'>:blue[¡Conjuguemos los verbos en mapudungun!] ✨</h1>", unsafe_allow_html=True)
+#st.title(st.markdown(Y))
+#st.title(":blue[¡Conjuguemos verbos en mapudungun!]✨")
+
+st.write("El mapudungun es una lengua amerindia que habita los actuales países de Chile y Argentina. Al no ser clasificada dentro de una familia lingüística, se considera una lengua aislada. "
+         "La conjugación de los verbos en esta lengua es muy interesante, ya que dependiendo de la última letra de la raíz, se añadirá un sufijo distinto. De tal manera que si termina en consonante, en una vocal i o una vocal distinta, la conjugación será diferente.")
 
 archivo = pd.read_excel('verbos.xlsx')
 
@@ -132,5 +142,19 @@ s = 'El verbo elegio en ' + d[p] + ' persona ' + ' y en ' + n + ' número es ' +
      
 st.write(s)
 
+i = Image.open("fotogrupal.jpeg")
+i = i.resize((300, 200))
+#st.image(i)
 
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.image(i, caption="✨EQUIPO MARAJA✨")
+
+with col3:
+    st.write(' ')
 
