@@ -115,32 +115,43 @@ st.markdown("<p style='color: blue; font-size: 32px; font-weight: bold;'>¡Conju
 #st.title(st.markdown(Y))
 #st.title(":blue[¡Conjuguemos verbos en mapudungun!]✨")
 
-st.write("El mapudungun es una lengua amerindia que habita los actuales países de Chile y Argentina. Al no ser clasificada dentro de una familia lingüística, se considera una lengua aislada. "
-         "La conjugación de los verbos en esta lengua es muy interesante, ya que dependiendo de la última letra de la raíz, se añadirá un sufijo distinto. De tal manera que si termina en consonante, en una vocal i o una vocal distinta, la conjugación será diferente.")
+st.write("El mapudungun es una lengua mapuche que abarca los actuales países de Chile y Argentina." 
+         "Actualmente posee entre 100 000 y 200 000 hablantes. En términos lingüísticos, el mapuche es una lengua aislada, ya que no posee parentesco con otra.")
+
+st.write('La conjugación de los verbos en esta lengua es interesante, ya que a la base del verbo se le añade un sufijo que contiene la información gramatical de persona y número.'
+         'Este sufijo cambiará dependiendo de la última letra de la base. Así, si esta base termina en consonante, en una vocal <i> o una vocal distinta, la conjugación será diferente.')
 
 archivo = pd.read_excel('verbos.xlsx')
 
 Di = dict(zip(archivo['español'],archivo['mapudungun']))
 
 option = st.selectbox(
-    'Elige un verbo en español',
+    'Elige un verbo en español de la siguiente lista:',
     list(Di.keys()))
 
 text_input = Di[option]
 
 p = st.selectbox(
-    'persona gramatical?',
+    'Elige una persona gramatical:',
     (1,2,3))
 
 d = {1:'primera', 2:'segunda', 3:'tercera'}
 
 n = st.selectbox(
-    'número?',
+    'Elige un número gramatical:',
     ('singular', 'dual', 'plural'))
 c = conjugacion(text_input,n,p)
-s = 'El verbo elegio en ' + d[p] + ' persona ' + ' y en ' + n + ' número es ' + c
+
+s = 'El verbo ' + '**' + option + '**' + ' en ' + d[p] + ' persona ' + ' y en ' + ' número ' + n + ' se escribe de la siguiente manera: ' + '➡️' + c + '⬅️'
      
 st.write(s)
+
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.write("")
+st.write("")
 
 i = Image.open("fotogrupal.jpeg")
 i = i.resize((300, 200))
