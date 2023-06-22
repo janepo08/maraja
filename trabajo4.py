@@ -115,7 +115,7 @@ st.markdown("<p style='color: blue; font-size: 32px; font-weight: bold;'>¡Conju
 #st.title(st.markdown(Y))
 #st.title(":blue[¡Conjuguemos verbos en mapudungun!]✨")
 
-st.write("El mapudungun es una lengua mapuche que abarca los actuales países de Chile y Argentina." 
+st.write("El mapudungun es la lengua de los mapuches que abarca los actuales países de Chile y Argentina. " 
          "Actualmente posee entre 100 000 y 200 000 hablantes. En términos lingüísticos, el mapuche es una lengua aislada, ya que no posee parentesco con otra.")
 
 st.write('La conjugación de los verbos en esta lengua es interesante, ya que a la base del verbo se le añade un sufijo que contiene la información gramatical de persona y número.'
